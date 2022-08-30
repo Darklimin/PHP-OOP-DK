@@ -59,8 +59,7 @@ class Cart {
 
     private string $customerLevel;
     private array $cartItemsArr;
-    private string $cartDiscountLevel;
-    private int $cartDiscountPerc;
+    private array $discountsArr;
     private float $total = 0;
 
     public function __construct(Customer $customer) {
@@ -73,18 +72,22 @@ class Cart {
     }
 
     public function addDiscount(CartDiscount $cartDiscount): void {
-        $this->cartDiscountLevel = $cartDiscount->getCustomerLevel();
-        $this->cartDiscountPerc = $cartDiscount->getDiscountPercent();
+        $this->discountsArr[] = [$cartDiscount->getCustomerLevel() => $cartDiscount->getDiscountPercent()];
     }
 
-    public function getTotal() {
+    public function getTotal(): float {
         foreach ($this->cartItemsArr as $value) {
-            if ($this->customerLevel === $this->cartDiscountLevel) {
-                $this->total += $value - ($value * $this->cartDiscountPerc / 100);
+            $this->total += $value;
+        }
+        foreach ($this->discountsArr as $value){
+            foreach ($value as $key => $secValue) {
+                if ($this->customerLevel === $key) {
+                 $this->total -= $this->total * $secValue / 100;
+                }
             }
         }
 
-        return $this->total . ' Total';
+        return round($this->total, 2);
     }
 }
 
@@ -144,7 +147,6 @@ class Customer {
         $this->name = $name;
         $this->surname = $surname;
         $this->level = $level;
-
     }
 
     public function getFullName(): string {
@@ -173,7 +175,7 @@ $cart->addDiscount($cartDiscount1);
 $cartDiscount2 = new CartDiscount(2, 'A');
 $cart->addDiscount($cartDiscount2);
 $cartDiscount3 = new CartDiscount(20, 'B');
-$cart->addDiscount($cartDiscount2);
+$cart->addDiscount($cartDiscount3);
 
 $total = $cart->getTotal();
 var_dump($total); // 1249.5
