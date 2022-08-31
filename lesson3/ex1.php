@@ -48,7 +48,8 @@ class BankAccount
     }
 }
 
-class StudentAccount extends BankAccount {
+class StudentAccount extends BankAccount
+{
     public function deposit(int $amount): void
     {
         if ($amount > 0) {
@@ -57,7 +58,8 @@ class StudentAccount extends BankAccount {
     }
 }
 
-class ChildAccount extends BankAccount {
+class ChildAccount extends BankAccount
+{
     public function spend(int $amount): void
     {
         if ($amount > $this->balance) {
@@ -76,6 +78,35 @@ class ChildAccount extends BankAccount {
     }
 }
 
+class CreditAccount extends BankAccount
+{
+    protected int $maxCreditAmount;
+
+    public function __construct(int $balance = 0, int $maxCreditAmount = 0)
+    {
+        if ($balance < 0 - $maxCreditAmount) {
+            $this->balance = 0;
+            die('Balance cannot be less than -' . $maxCreditAmount);
+        }
+        $this->balance = $balance;
+        $this->maxCreditAmount = $maxCreditAmount;
+    }
+
+    public function spend(int $amount): void
+    {
+        if ($amount > $this->balance + $this->maxCreditAmount) {
+            die('Cannot spend more than you have or your credit');
+        }
+
+        if ($amount <= 0) {
+            die('Can only spend a positive amount');
+        }
+
+        $this->balance = $this->balance - $amount;
+    }
+
+}
+
 $account = new BankAccount(1000);
 $account->deposit(1000);
 echo $account->getBalance();
@@ -86,7 +117,10 @@ $childAccount = new ChildAccount(1000);
 $account->spend(15);
 echo $account->getBalance() . PHP_EOL;
 $childAccount->spend(9);
-echo $childAccount->getBalance();
+echo $childAccount->getBalance() . PHP_EOL;
+$creditAccount = new CreditAccount(1000, 100);
+$creditAccount->spend(1050);
+echo $creditAccount->getBalance() . PHP_EOL;
 
 /*
 Sukurkite išvestines klases, kurios paveldėtų klasę BankAccount:
