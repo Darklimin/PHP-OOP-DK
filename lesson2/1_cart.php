@@ -68,7 +68,6 @@ class Cart {
 
     public function addItem(CartItem $cartItem): void {
         $this->cartItemsArr[] = $cartItem->getPrice();
-
     }
 
     public function addDiscount(CartDiscount $cartDiscount): void {
