@@ -88,6 +88,7 @@ class CreditAccount extends BankAccount
             $this->balance = 0;
             die('Balance cannot be less than -' . $maxCreditAmount);
         }
+
         $this->balance = $balance;
         $this->maxCreditAmount = $maxCreditAmount;
     }
@@ -107,6 +108,15 @@ class CreditAccount extends BankAccount
 
 }
 
+class SavingsAccount extends BankAccount
+{
+    public function addInterest (float $interest): int {
+        $this->balance += (int)round($this->balance * $interest, 0);
+
+        return $this->balance;
+    }
+}
+
 $account = new BankAccount(1000);
 $account->deposit(1000);
 echo $account->getBalance();
@@ -121,6 +131,10 @@ echo $childAccount->getBalance() . PHP_EOL;
 $creditAccount = new CreditAccount(1000, 100);
 $creditAccount->spend(1050);
 echo $creditAccount->getBalance() . PHP_EOL;
+$savingsAccount = new SavingsAccount(1000);
+echo $savingsAccount->getBalance() . PHP_EOL;
+$savingsAccount->addInterest(0.05);
+echo $savingsAccount->getBalance();
 
 /*
 Sukurkite išvestines klases, kurios paveldėtų klasę BankAccount:
