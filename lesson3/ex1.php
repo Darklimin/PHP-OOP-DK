@@ -57,12 +57,36 @@ class StudentAccount extends BankAccount {
     }
 }
 
+class ChildAccount extends BankAccount {
+    public function spend(int $amount): void
+    {
+        if ($amount > $this->balance) {
+            die('Cannot spend more than you have');
+        }
+
+        if ($amount <= 0) {
+            die('Can only spend a positive amount');
+        }
+
+        if ($amount >= 10) {
+            die('Max sum (10 eur) exceeded');
+        }
+
+        $this->balance = $this->balance - $amount;
+    }
+}
+
 $account = new BankAccount(1000);
 $account->deposit(1000);
 echo $account->getBalance();
 $studentAccount = new StudentAccount(1000);
 $studentAccount->deposit(1000);
-echo PHP_EOL . $studentAccount->getBalance();
+echo PHP_EOL . $studentAccount->getBalance() . PHP_EOL;
+$childAccount = new ChildAccount(1000);
+$account->spend(15);
+echo $account->getBalance() . PHP_EOL;
+$childAccount->spend(9);
+echo $childAccount->getBalance();
 
 /*
 Sukurkite išvestines klases, kurios paveldėtų klasę BankAccount:
