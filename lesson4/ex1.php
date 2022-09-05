@@ -4,37 +4,29 @@ declare(strict_types=1);
 
 class KilometerConverter
 {
-    public const NAUTICAL_MILE = 0.5399568;
-    public const MILE = 0.62137119;
-    public const YARD = 1093.6133;
-    public const CENTIMETER = 100000;
-    private float $input;
-
-    public function __construct(float $input){
-        $this->input = $input;
-    }
+    public function __construct(public float $input) {}
 
     public function convertToNauticalMiles(): float {
-        return $this->input * self::NAUTICAL_MILE;
+        return $this->input * NauticalMileConverter::NAUTICAL_MILE;
     }
 
     public function convertToMiles(): float {
-        return $this->input * self::MILE;
+        return $this->input * MileConverter::MILE;
     }
 
     public function convertToYards(): float {
-        return $this->input * self::YARD;
+        return $this->input * YardConverter::YARD;
     }
 
     public function convertToCentimeters(): float {
-        return $this->input * self::CENTIMETER;
+        return $this->input * CentimeterConverter::CENTIMETER;
     }
 
     public static function getConversionRates(): array {
-        return ['nautical_mile' => round(1 / self::NAUTICAL_MILE, 3),
-                'mile' => round(1 / self::MILE, 5),
-                'yard' => round(1 / self::YARD, 7),
-                'centimeter' => (1 / self::CENTIMETER)];
+        return ['nautical_mile' => round(1 / NauticalMileConverter::NAUTICAL_MILE, 3),
+                'mile' => round(1 / MileConverter::MILE, 5),
+                'yard' => round(1 / YardConverter::YARD, 7),
+                'centimeter' => (1 / CentimeterConverter::CENTIMETER)];
     }
 }
 
@@ -76,45 +68,48 @@ echo $centimeterConverter->convert();
 
 abstract class AbstractKilometerConverter
 {
-    public int $input;
-
-    public function __construct (int $input){
-        $this->input = $input;
-    }
-
+    public function __construct (public int $input) {}
 
     abstract public function convert(): float;
 }
 
 class NauticalMileConverter extends AbstractKilometerConverter
 {
+    public const NAUTICAL_MILE = 0.5399568;
+
     public function convert(): float
     {
-        return $this->input * KilometerConverter::NAUTICAL_MILE;
+        return $this->input * self::NAUTICAL_MILE;
     }
 }
 
 class MileConverter extends AbstractKilometerConverter
 {
+    public const MILE = 0.62137119;
+
     public function convert(): float
     {
-        return $this->input * KilometerConverter::MILE;
+        return $this->input * self::MILE;
     }
 }
 
 class YardConverter extends AbstractKilometerConverter
 {
+    public const YARD = 1093.6133;
+
     public function convert(): float
     {
-        return $this->input * KilometerConverter::YARD;
+        return $this->input * self::YARD;
     }
 }
 
 class CentimeterConverter extends AbstractKilometerConverter
 {
+    public const CENTIMETER = 100000;
+
     public function convert(): float
     {
-        return $this->input * KilometerConverter::CENTIMETER;
+        return $this->input * self::CENTIMETER;
     }
 }
 

@@ -6,9 +6,7 @@ class Divisor
 {
     private array $output;
 
-    public function __construct(public int $arg) {
-
-    }
+    public function __construct(public int $arg) {}
 
     public function __invoke (int $divider): array {
         for ($x = 1; $x < $this->arg; $x++) {
