@@ -74,9 +74,77 @@ $centimeterConverter = new CentimeterConverter(100);
 echo $centimeterConverter->convert();
 */
 
+abstract class AbstractKilometerConverter
+{
+    abstract public function convert(): float;
+}
+
+class NauticalMileConverter extends AbstractKilometerConverter
+{
+    public int $input;
+
+    public function __construct (int $input){
+        $this->input = $input;
+    }
+
+    public function convert(): float
+    {
+        return $this->input * 0.5399568;
+    }
+}
+
+class MileConverter extends AbstractKilometerConverter
+{
+    public int $input;
+
+    public function __construct (int $input){
+        $this->input = $input;
+    }
+
+    public function convert(): float
+    {
+        return $this->input * 0.62137119;
+    }
+}
+
+class YardConverter extends AbstractKilometerConverter
+{
+    public int $input;
+
+    public function __construct (int $input){
+        $this->input = $input;
+    }
+
+    public function convert(): float
+    {
+        return $this->input * 1093.6133;
+    }
+}
+
+class CentimeterConverter extends AbstractKilometerConverter
+{
+    public int $input;
+
+    public function __construct (int $input){
+        $this->input = $input;
+    }
+
+    public function convert(): float
+    {
+        return $this->input * 100000;
+    }
+}
+
+
 $a = new KilometerConverter(55);
 echo $a->convertToNauticalMiles() . PHP_EOL;
 echo $a->convertToMiles() . PHP_EOL;
 echo $a->convertToYards() . PHP_EOL;
 echo $a->convertToCentimeters() . PHP_EOL;
-print_r($a->getConversionRates());
+print_r($a->getConversionRates()) . PHP_EOL;
+$nauticalMileConverter = new NauticalMileConverter(100);
+$mileConverter = new MileConverter(100);
+$yardConverter = new YardConverter(100);
+$centimeterConverter = new CentimeterConverter(100);
+echo $nauticalMileConverter->convert() . PHP_EOL . $mileConverter->convert() . PHP_EOL . $yardConverter->convert()
+. PHP_EOL . $centimeterConverter->convert();
