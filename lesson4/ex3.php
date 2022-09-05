@@ -16,7 +16,6 @@ class Person
     public function __toString (): string {
         return 'This person is called ' . $this->name . ' ' . $this->surname;
     }
-
 }
 
 /*

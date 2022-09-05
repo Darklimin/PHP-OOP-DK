@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 class KilometerConverter
 {
-    private const NAUTICAL_MILE = 0.5399568;
-    private const MILE = 0.62137119;
-    private const YARD = 1093.6133;
-    private const CENTIMETER = 100000;
+    public const NAUTICAL_MILE = 0.5399568;
+    public const MILE = 0.62137119;
+    public const YARD = 1093.6133;
+    public const CENTIMETER = 100000;
     private float $input;
 
     public function __construct(float $input){
@@ -76,65 +76,47 @@ echo $centimeterConverter->convert();
 
 abstract class AbstractKilometerConverter
 {
+    public int $input;
+
+    public function __construct (int $input){
+        $this->input = $input;
+    }
+
+
     abstract public function convert(): float;
 }
 
 class NauticalMileConverter extends AbstractKilometerConverter
 {
-    public int $input;
-
-    public function __construct (int $input){
-        $this->input = $input;
-    }
-
     public function convert(): float
     {
-        return $this->input * 0.5399568;
+        return $this->input * KilometerConverter::NAUTICAL_MILE;
     }
 }
 
 class MileConverter extends AbstractKilometerConverter
 {
-    public int $input;
-
-    public function __construct (int $input){
-        $this->input = $input;
-    }
-
     public function convert(): float
     {
-        return $this->input * 0.62137119;
+        return $this->input * KilometerConverter::MILE;
     }
 }
 
 class YardConverter extends AbstractKilometerConverter
 {
-    public int $input;
-
-    public function __construct (int $input){
-        $this->input = $input;
-    }
-
     public function convert(): float
     {
-        return $this->input * 1093.6133;
+        return $this->input * KilometerConverter::YARD;
     }
 }
 
 class CentimeterConverter extends AbstractKilometerConverter
 {
-    public int $input;
-
-    public function __construct (int $input){
-        $this->input = $input;
-    }
-
     public function convert(): float
     {
-        return $this->input * 100000;
+        return $this->input * KilometerConverter::CENTIMETER;
     }
 }
-
 
 $a = new KilometerConverter(55);
 echo $a->convertToNauticalMiles() . PHP_EOL;

@@ -17,6 +17,7 @@ class Divisor
                 $this->output[] = $x;
             }
         }
+
         return $this->output;
     }
 }
