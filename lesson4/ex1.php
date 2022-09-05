@@ -29,6 +29,13 @@ class KilometerConverter
     public function convertToCentimeters(): float {
         return $this->input * self::CENTIMETER;
     }
+
+    public static function getConversionRates(): array {
+        return ['nautical_mile' => round(1 / self::NAUTICAL_MILE, 3),
+                'mile' => round(1 / self::MILE, 5),
+                'yard' => round(1 / self::YARD, 7),
+                'centimeter' => (1 / self::CENTIMETER)];
+    }
 }
 
 /*
@@ -72,3 +79,4 @@ echo $a->convertToNauticalMiles() . PHP_EOL;
 echo $a->convertToMiles() . PHP_EOL;
 echo $a->convertToYards() . PHP_EOL;
 echo $a->convertToCentimeters() . PHP_EOL;
+print_r($a->getConversionRates());
