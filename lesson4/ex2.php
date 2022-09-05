@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 class Divisor
 {
-    public int $arg;
-    public array $output;
+    private array $output;
 
-    public function __construct(int $arg) {
-        $this->arg = $arg;
+    public function __construct(public int $arg) {
+
     }
 
     public function __invoke (int $divider): array {
