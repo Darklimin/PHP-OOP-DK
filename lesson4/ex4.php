@@ -16,44 +16,31 @@ class Calculator
         return $a * $b;
     }
 
-    public function divide(int $a, int $b): float {
-        if ($b != 0) {
-            return round($a / $b, 2);
+    public function divide(int $a, int $b): mixed {
+        if ($b === 0) {
+            throw new Error('You cant divide from 0');
         }
-        echo 'You cant divide from 0';
-        die;
+
+        return round($a / $b, 2);
     }
 
     public function __call (string $method, array $times): void {
-        if ($method === 'sumTimer') {
-            $time_start = microtime(true);
-            for ($x = 1; $x <= $times[0]; $x++) {
-                self::sum(rand(), rand());
-            }
-            $time_end = microtime(true);
-            echo 'It took ' . $time_end - $time_start . ' to do ' . $times[0] . ' sum() operations' . PHP_EOL;
-        } elseif ($method === 'subtractTimer') {
-            $time_start = microtime(true);
-            for ($x = 1; $x <= $times[0]; $x++) {
-                self::subtract(rand(), rand());
-            }
-            $time_end = microtime(true);
-            echo 'It took ' . $time_end - $time_start . ' to do ' . $times[0] . ' subtract() operations' . PHP_EOL;
-        } elseif ($method === 'multiplyTimer') {
-            $time_start = microtime(true);
-            for ($x = 1; $x <= $times[0]; $x++) {
-                self::multiply(rand(), rand());
-            }
-            $time_end = microtime(true);
-            echo 'It took ' . $time_end - $time_start . ' to do ' . $times[0] . ' multiply() operations' . PHP_EOL;
-        } elseif ($method === 'divideTimer') {
-            $time_start = microtime(true);
-            for ($x = 1; $x <= $times[0]; $x++) {
-                self::multiply(rand(), rand());
-            }
-            $time_end = microtime(true);
-            echo 'It took ' . $time_end - $time_start . ' to do ' . $times[0] . ' divide() operations' . PHP_EOL;
+        if (!str_ends_with($method, 'Timer')) {
+            throw new Exception('Unknown method');
         }
+
+        $baseFunction = str_replace('Timer', '', $method);
+
+        if (!method_exists($this, $baseFunction)) {
+            throw new Exception('Base function doesnt exists');
+        }
+
+        $time_start = microtime(true);
+        for ($x = 1; $x <= $times[0]; $x++) {
+            $this->$baseFunction(random_int(1, 1000), random_int(1, 1000));
+        }
+        $time_end = microtime(true);
+        echo "It took " . $time_end - $time_start . " to do $times[0] $baseFunction() operations" . PHP_EOL;
     }
 }
 
