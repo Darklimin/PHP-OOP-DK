@@ -1,0 +1,4 @@
+
+Password must be at least 10 symbols long
+Password must be at least 10 symbols long
+Password must contain uppercase and lowercase letters
