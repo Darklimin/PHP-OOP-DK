@@ -4,3 +4,4 @@ Password must contain uppercase and lowercase letters
 Password must contain uppercase and lowercase letters
 Password must contain uppercase and lowercase letters
 Password must contain uppercase and lowercase letters
+Password must contain at least 2 special symbols (!@#$%^&*_)

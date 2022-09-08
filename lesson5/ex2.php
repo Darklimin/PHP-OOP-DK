@@ -2,20 +2,30 @@
 
 declare(strict_types=1);
 
-class InventoryException
+class InventoryException extends \Exception {}
+
+class InventoryCheck
 {
     public array $inventory;
     public array $checkArr = [];
     public array $finalArr = [];
     public array $finalFinalArr = [];
+    public array $indIds;
+    public bool $allOk = FALSE;
 
-    public function getInventory() {
+    public function getInventory(): array {
         $data = file_get_contents('./inventory.json');
         $this->inventory = json_decode($data, true);
+        foreach ($this->inventory as $value) {
+            $this->indIds[$value["product_id"]] = $value["quantity"];
+        }
+
+        return $this->indIds;
     }
 
     public function getCheck(string $input): array {
         $this->checkArr = (explode(',', trim($input)));
+
         foreach ($this->checkArr as $value) {
             $this->finalArr[] = explode(':', $value);
         }
@@ -23,26 +33,42 @@ class InventoryException
         foreach ($this->finalArr as $value) {
             $this->finalFinalArr[$value[0]] = $value[1];
         }
-//        var_dump($this->finalFinalArr);
 
-        return $this->finalArr;
+        return $this->finalFinalArr;
     }
 
     public function doCheck(): void {
-        foreach ($this->inventory as $item) {
-            foreach ($this->finalFinalArr as $key => $value) {
-                if ($key === $item['product_id']) {
-                    echo 'radau' . PHP_EOL;
+        foreach ($this->finalFinalArr as $key => $value) {
+            if (array_key_exists($key, $this->indIds)){
+                if ($value > $this->indIds[$key]) {
+                    throw new InventoryException("product $key only has " . $this->indIds[$key] .
+                        " items in the inventory");
+                } else {
+                    $this->allOk = TRUE;
                 }
+            } else {
+                throw new InventoryException("product $key is not in the inventory");
             }
+        }
+
+        if ($this->allOk) {
+            echo 'all products have the requested quantity in stock';
         }
     }
 }
 
-$inventory = new InventoryException();
+$inventory = new InventoryCheck();
 $inventory->getInventory();
 $inventory->getCheck($argv[1]);
-$inventory->doCheck();
+
+try {
+    $inventory->doCheck();
+} catch (InventoryException $exception) {
+    echo $exception->getMessage();
+    file_put_contents('./log.txt', date("Y-m-d H:i:s") . ' ' .
+        $exception->getMessage() . PHP_EOL, FILE_APPEND);
+}
+
 /*
 2.1 Parašykite įrankį inventoriaus tikrinimui. Inventorių rasite faile "./inventory.json"
 Programa turėtų veikti paduodant jai produkto id ir kiekio poras, atskirtas dvitaškiu. Pačios poros atskirtos kableliais:

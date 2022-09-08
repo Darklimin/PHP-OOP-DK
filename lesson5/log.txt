@@ -1,0 +1,6 @@
+2022-09-08 18:13:51 product 2 only has 15 items in the inventory
+2022-09-08 18:14:00 product 8 is not in the inventory
+2022-09-08 18:15:25 product 8 is not in the inventory
+2022-09-08 18:17:43 product 8 is not in the inventory
+2022-09-08 18:50:59 product 8 is not in the inventory
+2022-09-08 18:53:02 product 8 is not in the inventory
