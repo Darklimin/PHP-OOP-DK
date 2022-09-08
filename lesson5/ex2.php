@@ -4,6 +4,36 @@ declare(strict_types=1);
 
 class InventoryException extends \Exception {}
 
+class InputValidationException extends \Exception {}
+
+class InputValidator
+{
+    public array $checkArr;
+    public array $finalArr;
+    public array $array;
+
+    public function getChe(string $input): array {
+
+        $this->checkArr = (explode(',', trim($input)));
+
+        foreach ($this->checkArr as $value) {
+            $this->finalArr[] = explode(':', $value);
+            var_dump($this->finalArr);
+        }
+
+        foreach ($this->finalArr as $value) {
+            if (isset($value[0]) && isset($value[1])) {
+                if (is_numeric($value[0]) && is_numeric($value[1])) {
+                 $this->array[$value[0]] = $value[1];
+                } else
+                    throw new InputValidationException("Invalid input $input Format: id:quantity,id:quantity");
+            }
+        }
+
+        return $this->array;
+    }
+}
+
 class InventoryCheck
 {
     public array $inventory;
@@ -25,15 +55,23 @@ class InventoryCheck
 
     public function getCheck(string $input): array {
         $this->checkArr = (explode(',', trim($input)));
-
+//var_dump($this->checkArr);
         foreach ($this->checkArr as $value) {
             $this->finalArr[] = explode(':', $value);
         }
+        var_dump($this->finalArr);
 
-        foreach ($this->finalArr as $value) {
-            $this->finalFinalArr[$value[0]] = $value[1];
+        foreach ($this->finalArr as $value) { /* Cia blogai kazkas gaunasi, kad i array patenka nepilnas narys*/
+            if (isset($value[0])) {
+                var_dump(isset($value[0]));
+                if (isset($value[1])) {
+                    var_dump(isset($value[1]));
+                    $this->finalFinalArr[(int)$value[0]] = (int)$value[1];
+                }
+            }
+//            } else die;
         }
-
+var_dump($this->finalArr);
         return $this->finalFinalArr;
     }
 
@@ -57,12 +95,16 @@ class InventoryCheck
     }
 }
 
+//$validator = new InputValidator();
 $inventory = new InventoryCheck();
 $inventory->getInventory();
 $inventory->getCheck($argv[1]);
 
 try {
+//    $validator->getChe($argv[1]);
     $inventory->doCheck();
+} catch (InputValidationException $exception) {
+    echo $exception->getMessage();
 } catch (InventoryException $exception) {
     echo $exception->getMessage();
     file_put_contents('./log.txt', date("Y-m-d H:i:s") . ' ' .
