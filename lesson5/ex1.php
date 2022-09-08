@@ -51,8 +51,6 @@ class PassVal
     }
 }
 
-$errors = [];
-
 try {
     PassVal::valAll($argv);
 } catch (\Exception $exception) {
