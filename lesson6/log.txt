@@ -1,0 +1,30 @@
+2022-09-08 18:13:51 product 2 only has 15 items in the inventory
+2022-09-08 18:14:00 product 8 is not in the inventory
+2022-09-08 18:15:25 product 8 is not in the inventory
+2022-09-08 18:17:43 product 8 is not in the inventory
+2022-09-08 18:50:59 product 8 is not in the inventory
+2022-09-08 18:53:02 product 8 is not in the inventory
+2022-09-08 19:37:48 product 0 is not in the inventory
+2022-09-08 19:38:51 product 0 is not in the inventory
+2022-09-08 19:41:31 product 0 is not in the inventory
+2022-09-08 19:42:09 product 0 is not in the inventory
+2022-09-08 19:42:35 product 0 is not in the inventory
+2022-09-08 19:58:23 product 0 is not in the inventory
+2022-09-08 19:59:10 product 0 is not in the inventory
+2022-09-08 19:59:35 product 0 is not in the inventory
+2022-09-08 20:25:27 product 2 only has 15 items in the inventory
+2022-09-08 20:26:13 product 2 only has 15 items in the inventory
+2022-09-08 20:43:34 product 5 only has 0 items in the inventory
+2022-09-08 20:47:09 product 5 only has 0 items in the inventory
+2022-09-08 20:48:09 product 5 only has 0 items in the inventory
+2022-09-08 20:50:28 product 5 only has 0 items in the inventory
+2022-09-08 20:53:23 product 5 only has 0 items in the inventory
+2022-09-08 20:54:32 product 5 only has 0 items in the inventory
+2022-09-08 20:55:43 product 5 only has 0 items in the inventory
+2022-09-08 20:56:51 product 5 only has 0 items in the inventory
+2022-09-12 17:47:36 product 5 only has 0 items in the inventory
+2022-09-12 17:48:07 product 5 only has 0 items in the inventory
+2022-09-12 17:48:39 product 5 only has 0 items in the inventory
+2022-09-12 17:49:10 product 5 only has 0 items in the inventory
+2022-09-12 19:00:39 product 5 only has 0 items in the inventory
+2022-09-12 19:01:40 product 2 only has 15 items in the inventory
