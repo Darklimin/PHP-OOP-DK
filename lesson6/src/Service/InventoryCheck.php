@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-require './src/Exceptions/InventoryException.php';
+namespace MyProject\Service;
+
+use MyProject\Exceptions\InventoryException;
 
 class InventoryCheck
 {

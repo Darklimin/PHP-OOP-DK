@@ -2,8 +2,25 @@
 
 declare(strict_types=1);
 
-require './src/Service/InputValidator.php';
-require './src/Service/InventoryCheck.php';
+spl_autoload_register(function ($className) {
+    if ($className === 'MyProject\Service\InputValidator') {
+        require './src/Service/InputValidator.php';
+    }
+    if ($className === 'MyProject\Service\InventoryCheck') {
+        require './src/Service/InventoryCheck.php';
+    }
+    if ($className === 'MyProject\Exceptions\InventoryException') {
+        require './src/Exceptions\InventoryException.php';
+    }
+    if ($className === 'MyProject\Exceptions\InputValidationException') {
+        require './src/Exceptions\InputValidationException.php';
+    }
+});
+
+use MyProject\Service\InputValidator;
+use MyProject\Service\InventoryCheck;
+use MyProject\Exceptions\InventoryException;
+use MyProject\Exceptions\InputValidationException;
 
 try {
     $validator = new InputValidator();

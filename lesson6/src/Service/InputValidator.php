@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-require './src/Exceptions/InputValidationException.php';
+namespace MyProject\Service;
+
+use MyProject\Exceptions\InputValidationException;
 
 class InputValidator
 {
