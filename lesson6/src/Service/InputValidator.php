@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require './src/Exceptions/input_validator_exeption.php';
+require './src/Exceptions/InputValidationException.php';
 
 class InputValidator
 {

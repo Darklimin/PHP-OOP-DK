@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require './src/Exceptions/inventory_exception.php';
+require './src/Exceptions/InventoryException.php';
 
 class InventoryCheck
 {

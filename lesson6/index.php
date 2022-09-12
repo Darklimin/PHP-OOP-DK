@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require './src/Service/input_validator.php';
-require './src/Service/inventory_check.php';
+require './src/Service/InputValidator.php';
+require './src/Service/InventoryCheck.php';
 
 try {
     $validator = new InputValidator();
