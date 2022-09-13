@@ -7,7 +7,7 @@ use MyProject\Containers\CarOwnerContainer;
 /** Reads cars & owners from .json file */
 class InputReader {
 
-    public function readInput($path) {
+    public static function readInput($path) {
         $content = file_get_contents($path);
         $json = json_decode($content, true);
 

@@ -8,11 +8,11 @@ use MyProject\Models\Owner;
 /** Returns specific data objects from loosely defined associative arrays (from JSON file) */
 class AssocArrayConverter {
 
-    public function toCar($params): Car {
+    public static function toCar($params): Car {
         return new Car($params['model'], $params['id']);
     }
 
-    public function toOwner($params): Owner {
+    public static function toOwner($params): Owner {
         return new Owner($params['name'], $params['cars']);
     }
 
@@ -23,7 +23,7 @@ class AssocArrayConverter {
         $result = [];
 
         foreach ($list as $item)
-            $result[] = $this->toCar($item);
+            $result[] = AssocArrayConverter::toCar($item);
 
         return $result;
     }
@@ -35,7 +35,7 @@ class AssocArrayConverter {
         $result = [];
 
         foreach ($list as $item)
-            $result[] = $this->toOwner($item);
+            $result[] = AssocArrayConverter::toOwner($item);
 
         return $result;
     }

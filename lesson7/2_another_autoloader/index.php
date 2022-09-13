@@ -17,13 +17,8 @@ use MyProject\Services\CarOwnershipDatabase;
 use MyProject\Services\OwnershipDumper;
 
 $converter = new AssocArrayConverter();
-$reader = new InputReader();
-$carOwnerContainer = $reader->readInput('./input.json');
-
-$database = new CarOwnershipDatabase($carOwnerContainer);
-
-$dumper = new OwnershipDumper();
-$dumper->dumpOwnersAndCars($database);
+$database = new CarOwnershipDatabase(InputReader::readInput('./input.json'));
+OwnershipDumper::dumpOwnersAndCars($database);
 
 /*
 1.1
