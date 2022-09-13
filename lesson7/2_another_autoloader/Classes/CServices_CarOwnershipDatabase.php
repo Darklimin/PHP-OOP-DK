@@ -23,16 +23,23 @@ class CarOwnershipDatabase {
     public function getOwnersCars(Owner $owner): array {
         $result = [];
 
-        foreach ($owner->cars as $carId)
-            $result[] = $this->getCarById($carId);
+        foreach ($owner->cars as $carId) {
+            try {
+                $result[] = $this->getCarById($carId);
+            } catch (\Exception $exception) {
+                echo ' - ' . $exception->getMessage() . PHP_EOL;
+            }
+        }
 
         return $result;
     }
 
-    private function getCarById(string $id): Car|null {
+    private function getCarById(string $id): Car {
         foreach ($this->container->cars as $car)
-            if ($car->id == $id)
+            if ($car->id == $id) {
                 return $car;
+            }
+        throw new \Exception('No Car ID');
     }
 
 }
