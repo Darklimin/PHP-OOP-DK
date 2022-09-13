@@ -1,0 +1,33 @@
+{
+
+  "cars": [
+    {
+      "id": "ABC123",
+      "model": "Audi A6"
+    },
+    {
+      "id": "CCC111",
+      "model": "Fiat 500"
+    },
+    {
+      "id": "AAA767",
+      "model": "Mazda 3"
+    },
+    {
+      "id": "ERR404",
+      "model": "Audi 100"
+    }
+  ],
+
+  "owners": [
+    {
+      "name": "Jonas Jonaitis",
+      "cars": [ "AAA767", "CCC111" ]
+    },
+    {
+      "name": "Petras Petraitis",
+      "cars": [ "ABC123", "ERR404" ]
+    }
+  ]
+
+}
