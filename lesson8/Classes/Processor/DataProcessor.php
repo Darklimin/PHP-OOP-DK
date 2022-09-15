@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MyProject\Classes;
+namespace MyProject\Classes\Processor;
 
-use MyProject\Classes\JsonEncoder;
-use MyProject\Classes\JsonFileOutputHandler;
-use MyProject\Classes\TerminalOutputHander;
-use MyProject\Classes\XmlEncoder;
-use MyProject\Classes\XmlFileOutputHandler;
+use MyProject\Classes\Encoders\JsonEncoder;
+use MyProject\Classes\Encoders\XmlEncoder;
+use MyProject\Classes\OutputHandlers\JsonFileOutputHandler;
+use MyProject\Classes\OutputHandlers\TerminalOutputHandler;
+use MyProject\Classes\OutputHandlers\XmlFileOutputHandler;
 
 
 class DataProcessor

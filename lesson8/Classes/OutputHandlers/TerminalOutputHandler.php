@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MyProject\Classes;
+namespace MyProject\Classes\OutputHandlers;
 
 use MyProject\Interfaces\DataOutputHandlerInterface;
 

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace MyProject\Classes;
+namespace MyProject\Classes\OutputHandlers;
 
 use MyProject\Interfaces\DataOutputHandlerInterface;
 
-class JsonFileOutputHandler implements DataOutputHandlerInterface
+class XmlFileOutputHandler implements DataOutputHandlerInterface
 {
     public function processData(string $input): void {
-        file_put_contents('./output.json', $input);
+        file_put_contents('./output.xml', $input);
         echo 'Data to file was written';
     }
 }

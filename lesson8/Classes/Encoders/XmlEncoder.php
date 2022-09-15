@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MyProject\Classes;
+namespace MyProject\Classes\Encoders;
 
 use MyProject\Interfaces\DataEncoderInterface;
 use SimpleXMLElement;

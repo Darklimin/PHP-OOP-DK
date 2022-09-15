@@ -10,13 +10,13 @@ spl_autoload_register(function ($className) {
     require $fileName;
 });
 
-use MyProject\Classes\DataProcessor;
+use MyProject\Classes\Processor\DataProcessor;
 
 include './Src/Categories.php';
 
 $dataProcessor = new DataProcessor($categories);
 try {
-    $dataProcessor->process('xml', 'file');
+    $dataProcessor->process('xml', 'terminal');
 } catch (\Exception $exception){
     echo $exception->getMessage();
 }
