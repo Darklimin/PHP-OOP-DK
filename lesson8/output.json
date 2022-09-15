@@ -1,2 +1,76 @@
-<?xml version="1.0"?>
-<user_info><fruits><type>category</type><items><apple><count>5</count><price>0.15</price></apple><pear><count>5</count><price>0.15</price></pear></items></fruits><vegetables><type>category</type><items><carrot><count>100</count><price>0.01</price></carrot><tomato><count>45</count><price>0.5</price></tomato></items></vegetables><seafood><type>category</type><items><seabass><count>15</count><price>5.5</price></seabass></items></seafood><alcohol><type>category</type><items><beer_bottle><count>22</count><price>1.3</price></beer_bottle><wine_bottle><count>4</count><price>8</price></wine_bottle></items></alcohol><milk><type>category</type><items><cheese><count>1</count><price>4.5</price></cheese><yoghurt><count>13</count><price>0.99</price></yoghurt></items></milk><bread><type>category</type><items><brown_bread><count>11</count><price>2.1</price></brown_bread><white_bread><count>110</count><price>1.3</price></white_bread></items></bread></user_info>
+{
+    "fruits": {
+        "type": "category",
+        "items": {
+            "apple": {
+                "count": 5,
+                "price": 0.15
+            },
+            "pear": {
+                "count": 5,
+                "price": 0.15
+            }
+        }
+    },
+    "vegetables": {
+        "type": "category",
+        "items": {
+            "carrot": {
+                "count": 100,
+                "price": 0.01
+            },
+            "tomato": {
+                "count": 45,
+                "price": 0.5
+            }
+        }
+    },
+    "seafood": {
+        "type": "category",
+        "items": {
+            "seabass": {
+                "count": 15,
+                "price": 5.5
+            }
+        }
+    },
+    "alcohol": {
+        "type": "category",
+        "items": {
+            "beer_bottle": {
+                "count": 22,
+                "price": 1.3
+            },
+            "wine_bottle": {
+                "count": 4,
+                "price": 8
+            }
+        }
+    },
+    "milk": {
+        "type": "category",
+        "items": {
+            "cheese": {
+                "count": 1,
+                "price": 4.5
+            },
+            "yoghurt": {
+                "count": 13,
+                "price": 0.99
+            }
+        }
+    },
+    "bread": {
+        "type": "category",
+        "items": {
+            "brown_bread": {
+                "count": 11,
+                "price": 2.1
+            },
+            "white_bread": {
+                "count": 110,
+                "price": 1.3
+            }
+        }
+    }
+}

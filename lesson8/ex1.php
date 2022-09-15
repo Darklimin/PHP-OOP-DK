@@ -119,7 +119,7 @@ class XmlEncoder implements DataEncoderInterface
                 }
             }
         }
-        $xml_user_info = new SimpleXMLElement("<?xml version=\"1.0\"?><user_info></user_info>");
+        $xml_user_info = new SimpleXMLElement("<root></root>");
         array_to_xml($content,$xml_user_info);
         return $xml_user_info->asXML();
     }
@@ -134,27 +134,34 @@ class TerminalOutputHander implements DataOutputHandlerInterface
     }
 }
 
-class FileOutputHandler implements DataOutputHandlerInterface
+class JsonFileOutputHandler implements DataOutputHandlerInterface
 {
     public function processData(string $input): void {
         file_put_contents('./output.json', $input);
         echo 'Data to file was written';
     }
-
-//file_put_contents('./data.xml', $xml->asXML());
 }
+
+class XmlFileOutputHandler implements DataOutputHandlerInterface
+{
+    public function processData(string $input): void {
+        file_put_contents('./output.xml', $input);
+        echo 'Data to file was written';
+    }
+}
+
 class DataProcessor
 {
-    public function __construct(private array $data)
-    {
-    }
+    public function __construct(private array $data) {}
+
     public string $out = '';
 
     public function process (string $format, string $output): void {
         $a = new JsonEncoder();
         $b = new TerminalOutputHander();
-        $c = new FileOutputHandler();
+        $c = new JsonFileOutputHandler();
         $d = new XmlEncoder();
+        $e = new XmlFileOutputHandler();
 
         if ($format === 'json') {
             $this->out = $a->encodeData($this->data);
@@ -165,65 +172,21 @@ class DataProcessor
         if ($output === 'terminal') {
             $b->processData($this->out);
         } elseif ($output === 'file') {
-            $c->processData($this->out);
+            if ($format === 'json') {
+                $c->processData($this->out);
+            } elseif ($format === 'xml') {
+                $e->processData($this->out);
+            }
         } else throw new Exception('Wrong output command');
     }
-
-//    public string $out = '';
-//
-//    public function process(string $format, string $output): void
-//    {
-//
-//        if ($format === 'json') {
-//            $this->out = json_encode($this->data, JSON_PRETTY_PRINT);
-//        }
-//
-//        if ($output === 'terminal') {
-//            var_dump($this->out);
-//        } elseif ($output === 'file') {
-//            file_put_contents('./output.json', $this->out);
-//            echo 'Data to file was written';
-//        } else throw new Exception('Wrong output command');
-//
-//    }
-
-//        if ($format === 'xml') {
-//            $xml = new SimpleXMLElement('<Projects/>');
-//            $this->array_to_xml($this->data, $xml);
-////            var_dump($xml);
-//
-//        }
-//        // encode data to $format (JSON or XML)
-//        // output it to $output (file or terminal)
-//    }
-//
-//    public function array_to_xml($array, &$xml):
-//    {
-//        foreach ($array as $key => $value) {
-//            if (is_array($value)) {
-//                if (!is_numeric($key)) {
-//                    $subnode = $xml->addChild($key);
-//                    array_to_xml($value, $subnode);
-//                } else {
-//                    array_to_xml($value, $subnode);
-//                }
-//            } else {
-//                $xml->addChild($key, $value);
-//            }
-//        }
-//    }
 }
 
 $dataProcessor = new DataProcessor($categories);
 try {
-    $dataProcessor->process('xml', 'file');
+    $dataProcessor->process('json', 'terminal');
 } catch (Exception $exception){
     echo $exception->getMessage();
 }
-
-
-
-//$dataProcessor->process('xml', 'terminal');
 
 /*
 Klasė DataProcessor suteikia mums galimybę užkoduoti duomenis tam tikru formatu (JSON arba XML) ir išvesti juos į failą
