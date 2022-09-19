@@ -5,8 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MyProject\\Service\\": "src/Service",
-            "MyProject\\Exceptions\\": "src/Exceptions"
+            "MyProject\\": "src/"
         }
     },
     "require": {
