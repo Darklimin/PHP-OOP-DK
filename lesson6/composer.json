@@ -1,0 +1,15 @@
+{
+    "name": "darius-kliminskas/inventory-checker",
+    "description": "New composer project Inventory checker",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MyProject\\Service\\": "src/Service",
+            "MyProject\\Exceptions\\": "src/Exceptions"
+        }
+    },
+    "require": {
+        "monolog/monolog": "^3.2"
+    }
+}

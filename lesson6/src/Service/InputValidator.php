@@ -12,8 +12,8 @@ class InputValidator
     public array $finalArr;
     public array $array;
 
-    public function getChe(string $input): array {
-
+    public function getChe(string $input): array
+    {
         $this->checkArr = (explode(',', trim($input)));
 
         foreach ($this->checkArr as $value) {
@@ -24,8 +24,9 @@ class InputValidator
             if (isset($value[0]) && isset($value[1])) {
                 if (is_numeric($value[0]) && is_numeric($value[1])) {
                     $this->array[$value[0]] = $value[1];
-                } else
+                } else {
                     throw new InputValidationException("Invalid input $input Format: id:quantity,id:quantity");
+                }
             }
         }
 

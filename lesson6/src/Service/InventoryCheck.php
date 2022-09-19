@@ -13,9 +13,10 @@ class InventoryCheck
     public array $finalArr = [];
     public array $finalFinalArr = [];
     public array $indIds;
-    public bool $allOk = FALSE;
+    public bool $allOk = false;
 
-    public function getInventory(): array {
+    public function getInventory(): array
+    {
         $data = file_get_contents('./inventory.json');
         $this->inventory = json_decode($data, true);
         foreach ($this->inventory as $value) {
@@ -25,7 +26,8 @@ class InventoryCheck
         return $this->indIds;
     }
 
-    public function getCheck(string $input): array {
+    public function getCheck(string $input): array
+    {
         $this->checkArr = (explode(',', trim($input)));
         foreach ($this->checkArr as $value) {
             $this->finalArr[] = explode(':', $value);
@@ -41,14 +43,15 @@ class InventoryCheck
         return $this->finalFinalArr;
     }
 
-    public function doCheck(): void {
+    public function doCheck(): void
+    {
         foreach ($this->finalFinalArr as $key => $value) {
-            if (array_key_exists($key, $this->indIds)){
+            if (array_key_exists($key, $this->indIds)) {
                 if ($value > $this->indIds[$key]) {
                     throw new InventoryException("product $key only has " . $this->indIds[$key] .
                         " items in the inventory");
                 } else {
-                    $this->allOk = TRUE;
+                    $this->allOk = true;
                 }
             } else {
                 throw new InventoryException("product $key is not in the inventory");

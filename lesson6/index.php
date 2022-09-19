@@ -2,9 +2,24 @@
 
 declare(strict_types=1);
 
-spl_autoload_register(function ($className) {
-    require str_replace('MyProject', './src', $className) . '.php';
-});
+require_once './vendor/autoload.php';
+
+use Monolog\Formatter\LineFormatter;
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+$dateFormat = "Y-m-d H:i:s";
+$output = "%message%\n";
+$formatter = new LineFormatter($output, $dateFormat);
+$stream = new StreamHandler(__DIR__.'/log.txt', Level::Debug);
+$stream->setFormatter($formatter);
+$log = new Logger('name');
+$log->pushHandler($stream);
+
+//spl_autoload_register(function ($className) {
+//    require str_replace('MyProject', './src', $className) . '.php';
+//});
 
 use MyProject\Service\InputValidator;
 use MyProject\Service\InventoryCheck;
@@ -22,8 +37,9 @@ try {
     echo $exception->getMessage();
 } catch (InventoryException $exception) {
     echo $exception->getMessage();
-    file_put_contents('./log.txt', date("Y-m-d H:i:s") . ' ' .
-        $exception->getMessage() . PHP_EOL, FILE_APPEND);
+    $log->error(date("Y-m-d H:i:s") . ' ' . $exception->getMessage());
+//    file_put_contents('./log.txt', date("Y-m-d H:i:s") . ' ' .
+//        $exception->getMessage() . PHP_EOL, FILE_APPEND);
 }
 
 /*
