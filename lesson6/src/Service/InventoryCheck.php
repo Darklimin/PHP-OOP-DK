@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MyProject\Service;
 
+use MyProject\Exceptions\InputValidationException;
 use MyProject\Exceptions\InventoryException;
 
 class InventoryCheck
@@ -26,22 +27,25 @@ class InventoryCheck
         return $this->indIds;
     }
 
-    public function getCheck(string $input): array
-    {
-        $this->checkArr = (explode(',', trim($input)));
-        foreach ($this->checkArr as $value) {
-            $this->finalArr[] = explode(':', $value);
-        }
-
-        foreach ($this->finalArr as $value) { /* Cia blogai kazkas gaunasi, kad i array patenka nepilnas narys*/
-            if (isset($value[0])) {
-                if (isset($value[1])) {
-                    $this->finalFinalArr[(int)$value[0]] = (int)$value[1];
-                }
-            }
-        }
-        return $this->finalFinalArr;
-    }
+//    public function getCheck(string $input): array
+//    {
+//        if (preg_match("/\d+:\d+,\d+:\d+,\d+:\d+/", $input)) {
+//            $this->checkArr = (explode(',', trim($input)));
+//            foreach ($this->checkArr as $value) {
+//                $this->finalArr[] = explode(':', $value);
+//            }
+//
+//            foreach ($this->finalArr as $value) { /* Cia blogai kazkas gaunasi, kad i array patenka nepilnas narys*/
+//                if (isset($value[0])) {
+//                    if (isset($value[1])) {
+//                        $this->finalFinalArr[(int)$value[0]] = (int)$value[1];
+//                    }
+//                }
+//            }
+//
+//            return $this->finalFinalArr;
+//        } else throw new InputValidationException("Invalid input $input Format: id:quantity,id:quantity");
+//    }
 
     public function doCheck(): void
     {
