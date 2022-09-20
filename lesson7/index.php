@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-spl_autoload_register(function ($className) {
-    $classWithoutPrefix = str_replace('MyProject\\', '', $className);
-    $array = explode('\\', $classWithoutPrefix);
-    $stringAgain = implode('_', $array);
-    $fileName = "C$stringAgain.php";
-    $filePath = "Classes" . DIRECTORY_SEPARATOR . $fileName;
-    require $filePath;
-});
+require_once './vendor/autoload.php';
+
+//spl_autoload_register(function ($className) {
+//    $classWithoutPrefix = str_replace('MyProject\\', '', $className);
+//    $array = explode('\\', $classWithoutPrefix);
+//    $stringAgain = implode('_', $array);
+//    $fileName = "C$stringAgain.php";
+//    $filePath = "Classes" . DIRECTORY_SEPARATOR . $fileName;
+//    require $filePath;
+//});
 
 use MyProject\Services\AssocArrayConverter;
 use MyProject\Services\InputReader;
@@ -41,7 +43,7 @@ Kiekviena klasė laikoma savo faile.
 Čia naudojamas kitoks ryšys tarp Namespace ir failų sistemos. Failo pavadinime įtraukiamas ir
 klasės Namespace be projekto prefikso. Failas pradedamas raide C (t.y. class).
 FQCN elementai atskiriami apatiniu brūkšniu.
-Pvz.: CServices_InputReader.php
+Pvz.: InputReader.php
 1.3
 Ten, kur reikia, importuokite klases (sudėkite use raktažodžius).
 1.4

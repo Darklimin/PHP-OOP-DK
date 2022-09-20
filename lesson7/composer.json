@@ -1,0 +1,15 @@
+{
+    "name": "darius.kliminskas/lesson7",
+    "autoload": {
+        "psr-4": {
+            "MyProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Darius Kliminskas",
+            "email": "dariuskliminskas@gmail.com"
+        }
+    ],
+    "require": {}
+}

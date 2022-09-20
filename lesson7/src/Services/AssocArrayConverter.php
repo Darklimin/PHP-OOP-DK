@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MyProject\Services;
 
 use MyProject\Models\Car;
