@@ -31,11 +31,12 @@ class InventoryCheck
     {
         if (preg_match("/\d+:\d+,\d+:\d+,\d+:\d+/", $input)) {
             $this->checkArr = (explode(',', trim($input)));
+
             foreach ($this->checkArr as $value) {
                 $this->finalArr[] = explode(':', $value);
             }
 
-            foreach ($this->finalArr as $value) { /* Cia blogai kazkas gaunasi, kad i array patenka nepilnas narys*/
+            foreach ($this->finalArr as $value) {
                 if (isset($value[0])) {
                     if (isset($value[1])) {
                         $this->finalFinalArr[(int)$value[0]] = (int)$value[1];

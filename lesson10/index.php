@@ -26,11 +26,9 @@ use MyProject\Exceptions\InputValidationException;
 $container = new Container();
 
 try {
-    $validator = $container->get(InputValidator::class);
     $inventory = $container->get(InventoryCheck::class);
     $inventory->getInventory();
     $inventory->getCheck($argv[1]);
-    $validator->getChe($argv[1]);
     $inventory->doCheck();
 } catch (InputValidationException $exception) {
     echo $exception->getMessage();
