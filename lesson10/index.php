@@ -17,19 +17,20 @@ $stream->setFormatter($formatter);
 $log = new Logger('name');
 $log->pushHandler($stream);
 
+use MyProject\Service\DoCheck;
+use MyProject\Service\GetCheck;
+use MyProject\Service\GetInventory;
 use MyProject\Containers\Container;
-use MyProject\Service\InputValidator;
-use MyProject\Service\InventoryCheck;
 use MyProject\Exceptions\InventoryException;
 use MyProject\Exceptions\InputValidationException;
 
 $container = new Container();
+$doCheck = $container->get(DoCheck::class);
+$getCheck = $container->get(GetCheck::class);
+$getInventory = $container->get(GetInventory::class);
 
 try {
-    $inventory = $container->get(InventoryCheck::class);
-    $inventory->getInventory();
-    $inventory->getCheck($argv[1]);
-    $inventory->doCheck();
+    $doCheck->doCheck($getCheck->getCheck($argv[1]), $getInventory->getInventory());
 } catch (InputValidationException $exception) {
     echo $exception->getMessage();
 } catch (InventoryException $exception) {
