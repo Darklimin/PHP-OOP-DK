@@ -24,19 +24,6 @@ use MyProject\Exceptions\InventoryException;
 use MyProject\Exceptions\InputValidationException;
 
 $container = new Container();
-$container->set(
-    InputValidator::class,
-    function (Container $container) {
-        return new InputValidator();
-    }
-);
-
-$container->set(
-    InventoryCheck::class,
-    function (Container $container) {
-        return new InventoryCheck();
-    }
-);
 
 try {
     $validator = $container->get(InputValidator::class);
