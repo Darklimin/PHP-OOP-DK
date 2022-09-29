@@ -1,0 +1,27 @@
+
+h1 {
+    color: #be911e;
+    text-align: center;
+}
+
+table {
+    text-align: center;
+    background: azure;
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    font-weight: bold;
+}
+
+td {
+    border: 1px solid black;
+}
+
+fieldset {
+    width: fit-content;
+    margin: 2rem auto;
+
+}
