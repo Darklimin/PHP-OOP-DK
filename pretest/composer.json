@@ -1,0 +1,15 @@
+{
+    "name": "darius.kliminskas/pretest",
+    "autoload": {
+        "psr-4": {
+            "DariusKliminskas\\Pretest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Darius Kliminskas",
+            "email": "dariuskliminskas@gmail.com"
+        }
+    ],
+    "require": {}
+}
