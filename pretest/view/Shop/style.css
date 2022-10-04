@@ -8,7 +8,8 @@ table {
     text-align: center;
     background: azure;
     border: 1px solid black;
-    width: 100%;
+    width: 80rem;
+    margin: auto;
     border-collapse: collapse;
 }
 
@@ -24,4 +25,22 @@ fieldset {
     width: fit-content;
     margin: 2rem auto;
 
+}
+
+.bottom_buttons {
+    text-align: center;
+    margin: 2rem auto 2rem auto;
+}
+
+.my_sum {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.sum_button {
+    display: inline-block;
+}
+
+.disc_input {
+    width: 9rem;
 }

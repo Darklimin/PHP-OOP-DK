@@ -9,4 +9,5 @@ use DariusKliminskas\Pretest\Framework\Router;
 
 $container = new DIContainer();
 $router = $container->get(Router::class);
-$router->enterData();
+$request = (isset($_POST['_method'])) ? strtoupper($_POST['_method']) : $_SERVER['REQUEST_METHOD'];
+$router->process($request);
